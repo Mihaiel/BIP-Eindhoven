@@ -315,7 +315,7 @@ h3 {
 }
 
 .logo{
-  width: 20%;
+  width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -799,8 +799,8 @@ h3 {
   box-shadow: 0 0 12px rgba(255, 106, 122, 0.5);
 }
 
-.legend-dot.walker,
-.legend-dot.truck {
+.legend-dot.pedestrian-dot,
+.legend-dot.truck-dot {
   background: var(--mint);
   box-shadow: 0 0 12px rgba(131, 242, 207, 0.5);
 }
@@ -808,7 +808,8 @@ h3 {
 .lighting-map,
 .waste-map {
   position: relative;
-  height: 560px;
+  aspect-ratio: 900 / 560;
+  height: auto;
   overflow: hidden;
   border-radius: 28px;
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -1246,7 +1247,7 @@ h3 {
 
   .lighting-map,
   .waste-map {
-    height: 440px;
+    min-height: 440px;
   }
 
   .demo-controls {
@@ -1306,7 +1307,7 @@ h3 {
 
   .lighting-map,
   .waste-map {
-    height: 360px;
+    min-height: 360px;
   }
 
   .legend {

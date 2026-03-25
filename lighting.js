@@ -13,6 +13,7 @@
   const weatherValue = document.getElementById("weatherValue");
   const activeRange = document.getElementById("activeRange");
   const energySaved = document.getElementById("energySaved");
+  const streetPaths = Array.from(map.querySelectorAll(".map-streets path"));
 
   const weatherModes = [
     { name: "Clear", radius: 132, maxBrightness: 84, savings: 41 },
@@ -20,11 +21,14 @@
     { name: "Fog", radius: 164, maxBrightness: 100, savings: 32 }
   ];
 
-  const lights = [
-    [90, 70], [175, 70], [275, 70], [355, 145], [445, 145], [570, 145], [690, 115], [760, 95],
-    [140, 235], [245, 235], [345, 235], [445, 310], [560, 310], [700, 310],
-    [210, 455], [320, 455], [445, 455], [485, 385], [620, 385], [785, 385],
-    [275, 180], [275, 320], [445, 230], [620, 250]
+  // Lamps are sampled from the actual SVG street paths so they stay visually locked to the road network.
+  const lightLayout = [
+    [0.02, 0.18, 0.34, 0.5, 0.72, 0.95],
+    [0.06, 0.32, 0.62, 0.94],
+    [0.06, 0.33, 0.62, 0.95],
+    [0.18, 0.5, 0.85],
+    [0.08, 0.38, 0.68, 0.95],
+    [0.18, 0.52, 0.86]
   ];
 
   const routePoints = [
@@ -37,6 +41,19 @@
   let speed = Number(speedInput.value) || 1;
   let playing = true;
   const routeLength = getRouteLength(routePoints);
+
+  const lights = lightLayout.flatMap((samples, pathIndex) => {
+    const path = streetPaths[pathIndex];
+    if (!path) {
+      return [];
+    }
+
+    const pathLength = path.getTotalLength();
+    return samples.map((sample) => {
+      const point = path.getPointAtLength(pathLength * sample);
+      return [point.x, point.y];
+    });
+  });
 
   const lightElements = lights.map(([x, y]) => {
     const node = document.createElement("div");
