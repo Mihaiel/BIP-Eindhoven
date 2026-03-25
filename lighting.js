@@ -23,12 +23,12 @@
 
   // Lamps are sampled from the actual SVG street paths so they stay visually locked to the road network.
   const lightLayout = [
-    [0.02, 0.18, 0.34, 0.5, 0.72, 0.95],
-    [0.06, 0.32, 0.62, 0.94],
-    [0.06, 0.33, 0.62, 0.95],
-    [0.18, 0.5, 0.85],
-    [0.08, 0.38, 0.68, 0.95],
-    [0.18, 0.52, 0.86]
+    [0.16, 0.54, 0.86],
+    [0.22, 0.74],
+    [0.18, 0.72],
+    [0.28, 0.72],
+    [0.2, 0.62],
+    [0.28, 0.72]
   ];
 
   const routePoints = [
