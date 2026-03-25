@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartStreets Waste Demo</title>
+  <meta name="description" content="Smart waste collection demo for the SmartStreets Eindhoven concept.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="waste">
+  <div class="site-shell">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="ambient-grid"></div>
+
+    <header class="site-header">
+      <nav class="nav glass">
+        <a class="brand" href="index.html" aria-label="SmartStreets home">
+          <span class="brand-mark"></span>
+          <span>
+            <strong>SmartStreets</strong>
+            <small>Developed by Group 5 | BIP Fontys University of Applied Sciences 2026</small>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links">
+          <a class="nav-link" href="index.html">Overview</a>
+          <a class="nav-link" href="lighting.html">Lighting Demo</a>
+          <a class="nav-link active" href="waste.html">Waste Demo</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="section demo-page">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">Waste Simulation</div>
+          <h1>Collection routes that react to real fill levels.</h1>
+          <p>Smart bins report fill level and usage patterns, allowing waste operators to collect only bins that need service and follow a more efficient route.</p>
+        </div>
+
+        <section class="demo-layout">
+          <div class="demo-stage glass reveal">
+            <div class="map-header">
+              <div>
+                <span class="eyebrow small">Network View</span>
+                <h2>District bin prioritization</h2>
+              </div>
+              <div class="legend">
+                <span><i class="legend-dot blue"></i>Normal bin</span>
+                <span><i class="legend-dot red"></i>Pickup needed</span>
+                <span><i class="legend-dot truck"></i>Truck route</span>
+              </div>
+            </div>
+
+            <div class="waste-map" id="wasteMap">
+              <svg class="map-streets" viewBox="0 0 900 560" aria-hidden="true">
+                <path d="M110 90 L290 90 L390 180 L630 180 L760 120" />
+                <path d="M150 280 L345 280 L445 350 L720 350" />
+                <path d="M205 455 L395 455 L515 410 L810 410" />
+                <path d="M290 90 L290 455" />
+                <path d="M445 180 L445 455" />
+                <path d="M630 120 L630 410" />
+              </svg>
+              <svg class="route-overlay" viewBox="0 0 900 560" aria-hidden="true">
+                <path id="wasteRoutePath" d="" />
+              </svg>
+              <div class="truck" id="truck">
+                <span></span>
+              </div>
+            </div>
+
+            <div class="demo-controls">
+              <button class="button button-primary" id="wasteStart">Start Route</button>
+              <button class="button button-secondary" id="wastePause">Pause</button>
+              <button class="button button-ghost" id="wasteReset">Reset</button>
+              <button class="button button-ghost" id="wasteRandomize">Randomize Fill Levels</button>
+            </div>
+          </div>
+
+          <aside class="demo-sidebar reveal" data-delay="120">
+            <article class="dashboard-card glass">
+              <h3>Collection dashboard</h3>
+              <div class="data-list">
+                <div><span>Total bins monitored</span><strong id="totalBins">0</strong></div>
+                <div><span>Bins requiring pickup</span><strong id="pickupBins">0</strong></div>
+                <div><span>Route efficiency</span><strong id="routeEfficiency">0%</strong></div>
+                <div><span>Distance saved</span><strong id="distanceSaved">0 km</strong></div>
+                <div><span>Collection status</span><strong id="collectionStatus">Idle</strong></div>
+              </div>
+            </article>
+            <article class="dashboard-card glass">
+              <h3>Live prioritization</h3>
+              <div class="big-metric">
+                <strong id="collectedCount">0/0</strong>
+                <span>Urgent bins completed</span>
+              </div>
+              <div class="status-pill-row">
+                <span class="status-pill urgent">Urgent</span>
+                <span class="status-pill normal">Serviced</span>
+              </div>
+            </article>
+            <article class="comparison-card glass">
+              <h3>System comparison</h3>
+              <div class="compare-row">
+                <span>Traditional collection</span>
+                <strong>Full route, all bins checked</strong>
+              </div>
+              <div class="compare-row">
+                <span>SmartStreets collection</span>
+                <strong>Dynamic route, only full bins visited</strong>
+              </div>
+            </article>
+          </aside>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer compact">
+      <div class="container footer-grid">
+        <div>
+          <strong>SmartStreets Waste Demo</strong>
+          <p>AI-supported monitoring for cleaner public space and more efficient municipal service routes.</p>
+        </div>
+        <div>
+          <span>Erasmus+ / CitizenCity</span>
+          <span>Simulated Eindhoven district logic</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="page-loader" aria-hidden="true">
+    <div class="loader-mark"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="waste.js"></script>
+</body>
+</html>

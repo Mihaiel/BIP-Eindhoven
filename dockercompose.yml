@@ -1,0 +1,9 @@
+services:
+  newapp:
+    image: nginx:alpine
+    container_name: eindhoven
+    volumes:
+      - .:/usr/share/nginx/html:ro
+    ports:
+      - "8085:80"
+    restart: unless-stopped

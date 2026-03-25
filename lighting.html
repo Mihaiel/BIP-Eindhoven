@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartStreets Lighting Demo</title>
+  <meta name="description" content="Adaptive lighting demo for the SmartStreets Eindhoven concept.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="lighting">
+  <div class="site-shell">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <div class="ambient-grid"></div>
+
+    <header class="site-header">
+      <nav class="nav glass">
+        <a class="brand" href="index.html" aria-label="SmartStreets home">
+          <span class="brand-mark"></span>
+          <span>
+            <strong>SmartStreets</strong>
+            <small>Developed by Group 5 | BIP Fontys University of Applied Sciences 2026</small>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links">
+          <a class="nav-link" href="index.html">Overview</a>
+          <a class="nav-link active" href="lighting.html">Lighting Demo</a>
+          <a class="nav-link" href="waste.html">Waste Demo</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="section demo-page">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">Lighting Simulation</div>
+          <h1>Adaptive light, tuned to the street in motion.</h1>
+          <p>When movement is detected, nearby lights brighten for safety. When streets are quiet, lights stay at a low idle level to reduce energy waste.</p>
+        </div>
+
+        <section class="demo-layout">
+          <div class="demo-stage glass reveal">
+            <div class="map-header">
+              <div>
+                <span class="eyebrow small">District View</span>
+                <h2>Vaartbroek / Dommelbeemd inspired route</h2>
+              </div>
+              <div class="legend">
+                <span><i class="legend-dot idle"></i>Idle 15%</span>
+                <span><i class="legend-dot active"></i>Adaptive glow</span>
+                <span><i class="legend-dot walker"></i>Pedestrian</span>
+              </div>
+            </div>
+
+            <div class="lighting-map" id="lightingMap">
+              <svg class="map-streets" viewBox="0 0 900 560" aria-hidden="true">
+                <path d="M90 70 L275 70 L355 145 L570 145 L760 95" />
+                <path d="M140 235 L345 235 L445 310 L700 310" />
+                <path d="M210 455 L390 455 L485 385 L785 385" />
+                <path d="M275 70 L275 455" />
+                <path d="M445 145 L445 455" />
+                <path d="M620 120 L620 385" />
+              </svg>
+              <svg class="route-path" viewBox="0 0 900 560" aria-hidden="true">
+                <path id="pedestrianPath" d="M90 70 L275 70 L355 145 L445 145 L445 310 L700 310 L785 385" />
+              </svg>
+              <div class="walker" id="walker">
+                <span></span>
+              </div>
+            </div>
+
+            <div class="demo-controls">
+              <button class="button button-primary" id="lightingPlay">Pause</button>
+              <button class="button button-secondary" id="lightingReset">Reset Route</button>
+              <button class="button button-ghost" id="weatherToggle">Weather: Clear</button>
+              <label class="speed-control" for="lightingSpeed">
+                <span>Speed</span>
+                <input id="lightingSpeed" type="range" min="0.6" max="1.8" step="0.2" value="1">
+              </label>
+            </div>
+          </div>
+
+          <aside class="demo-sidebar reveal" data-delay="120">
+            <article class="dashboard-card glass">
+              <h3>Live mode</h3>
+              <div class="data-list">
+                <div><span>Current mode</span><strong id="modeValue">Adaptive</strong></div>
+                <div><span>Idle brightness</span><strong>15%</strong></div>
+                <div><span>Active brightness</span><strong id="activeRange">80-100%</strong></div>
+                <div><span>Weather state</span><strong id="weatherValue">Clear</strong></div>
+              </div>
+            </article>
+            <article class="dashboard-card glass">
+              <h3>Tonight’s impact</h3>
+              <div class="big-metric">
+                <strong id="energySaved">0%</strong>
+                <span>Estimated energy saved</span>
+              </div>
+              <div class="mini-chart">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </article>
+            <article class="comparison-card glass">
+              <h3>System comparison</h3>
+              <div class="compare-row">
+                <span>Traditional system</span>
+                <strong>Fixed at 100%</strong>
+              </div>
+              <div class="compare-row">
+                <span>SmartStreets</span>
+                <strong>Adaptive 15-100%</strong>
+              </div>
+            </article>
+          </aside>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer compact">
+      <div class="container footer-grid">
+        <div>
+          <strong>SmartStreets Lighting Demo</strong>
+          <p>Adaptive urban lighting concept for safer, calmer, more efficient Eindhoven streets.</p>
+        </div>
+        <div>
+          <span>Erasmus+ / CitizenCity</span>
+          <span>Simulated district behavior</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="page-loader" aria-hidden="true">
+    <div class="loader-mark"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="lighting.js"></script>
+</body>
+</html>
