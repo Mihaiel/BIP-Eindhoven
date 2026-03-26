@@ -859,8 +859,8 @@ h3 {
 }
 
 .route-overlay path {
-  stroke: rgba(102, 184, 255, 0.58);
-  filter: drop-shadow(0 0 8px rgba(102, 184, 255, 0.28));
+  stroke: rgba(131, 242, 207, 0.78);
+  filter: drop-shadow(0 0 8px rgba(131, 242, 207, 0.28));
 }
 
 .light-node,
