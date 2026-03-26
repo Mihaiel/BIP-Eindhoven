@@ -13,12 +13,13 @@
   const weatherValue = document.getElementById("weatherValue");
   const activeRange = document.getElementById("activeRange");
   const energySaved = document.getElementById("energySaved");
+  const chartBars = Array.from(document.querySelectorAll(".mini-chart span"));
   const streetPaths = Array.from(map.querySelectorAll(".map-streets path"));
 
   const weatherModes = [
-    { name: "Clear", radius: 132, maxBrightness: 84, savings: 41 },
-    { name: "Rain", radius: 150, maxBrightness: 92, savings: 36 },
-    { name: "Fog", radius: 164, maxBrightness: 100, savings: 32 }
+    { name: "Clear", radius: 132, maxBrightness: 84, savings: 41, impact: [34, 44, 58, 50, 40] },
+    { name: "Rain", radius: 150, maxBrightness: 92, savings: 36, impact: [28, 38, 49, 43, 34] },
+    { name: "Fog", radius: 164, maxBrightness: 100, savings: 32, impact: [24, 34, 44, 38, 30] }
   ];
 
   // Lamps are sampled from the actual SVG street paths so they stay visually locked to the road network.
@@ -147,6 +148,9 @@
     weatherValue.textContent = mode.name;
     weatherButton.textContent = `Weather: ${mode.name}`;
     activeRange.textContent = `80-${mode.maxBrightness}%`;
+    chartBars.forEach((bar, index) => {
+      bar.style.setProperty("--bar-height", String(mode.impact[index] || 34));
+    });
     positionWalker();
   }
 
